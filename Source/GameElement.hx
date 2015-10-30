@@ -7,6 +7,7 @@ import openfl.Assets;
 class GameElement extends Sprite {
 
 	public var alive:Bool;
+	private var bmp:Bitmap=null;
 
 	public function new(){
 		super();
@@ -14,7 +15,8 @@ class GameElement extends Sprite {
 	}
 
 	public function loadBitmap(name:String, scale:Float){
-		var bmp:Bitmap = new Bitmap(Assets.getBitmapData('assets/images/'+name+'.png'));
+		if(bmp!=null) this.removeChild(bmp);
+		bmp = new Bitmap(Assets.getBitmapData('assets/images/'+name+'.png'));
 		this.addChild(bmp);
 		bmp.scaleX = bmp.scaleY = scale;
 		bmp.x = bmp.width/-2;
@@ -31,7 +33,7 @@ class GameElement extends Sprite {
 		return true;
 	}
 
-	function updateLogic(){
+	public function updateLogic(){
 
 	}
 

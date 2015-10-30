@@ -15,6 +15,22 @@ class Bola extends GameElement {
 		paleta = p;
 	}
 
+	public function verificarColision(b:Bloque){
+		if(this.checkCollision(b)){
+			var dX=b.width/2+this.width/2-3;
+			b.kill();
+			if(this.y<b.y && b.y-this.y<dX){
+				vY=-Math.abs(vY);
+				return;
+			} 
+			if(this.y>b.y && this.y-b.y<dX){
+				vY=-Math.abs(vY);
+				return;
+			} 
+			vX*=-1;
+		}
+	}
+
 	override public function updateLogic(){
 
 		if(this.x>=Main.SCENE_WIDTH-15){
@@ -30,7 +46,7 @@ class Bola extends GameElement {
 		if(vY!=0 && this.y>=Main.SCENE_HEIGHT-15){
 			SoundManager.play('game-over');
 			vY=vX=0;
-			Main.reinitCounter = 120;
+			scenes.Game.reinitCounter = 120;
 		}
 
 		if(this.y<=0+15){
