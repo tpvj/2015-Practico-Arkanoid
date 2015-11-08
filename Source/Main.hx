@@ -6,6 +6,7 @@ import openfl.display.Bitmap;
 import openfl.events.Event;
 import openfl.Assets;
 import scenes.*;
+import openfl.Lib;
 
 class Main extends Sprite {
 	
@@ -13,23 +14,22 @@ class Main extends Sprite {
 	public static var SCENE_HEIGHT:Int = 400;
 
 	private var sm:SceneManager;
-	private var fondo:Sprite;
+	private var fondo:Background;
 
 	public function new () {
 		
 		super ();
 
-		fondo = new Sprite();
-		fondo.graphics.beginFill(0x000000);
-		fondo.graphics.drawRect(0,0,SCENE_WIDTH,SCENE_HEIGHT);
-		fondo.graphics.endFill();
-
+		var game = new Game(sm);
+		fondo = new Background(game.paleta);
 		this.addChild(fondo);
-		this.stage.addEventListener(Event.ENTER_FRAME, updateLogic);
 
-		sm = new SceneManager();
+		this.stage.addEventListener(Event.ENTER_FRAME, updateLogic);
+		this.stage.addEventListener(Event.RESIZE, resize);
+
+		sm = new SceneManager(this);
 		sm.loadScene('menu',new Menu(sm));
-		sm.loadScene('game',new Game(sm));
+		sm.loadScene('game',game);
 
 		InputManager.init();
 		SoundManager.init();
@@ -37,11 +37,23 @@ class Main extends Sprite {
 		SoundManager.loadSound('game-over');
 
 		sm.switchScene('menu');
+
+	}
+
+	function resize(_){
+		var sX:Float = stage.stageWidth/SCENE_WIDTH;
+		var sY:Float = stage.stageHeight/SCENE_HEIGHT;
+		var s:Float = Math.min(sX,sY);
+		this.scaleX = this.scaleY = s;
+		Lib.current.stage.color = 0x00AAAA;
+		this.x = (stage.stageWidth - (SCENE_WIDTH*s))/2;
+		this.y = (stage.stageHeight - (SCENE_HEIGHT*s))/2;
 	}
 
 
 	function updateLogic(_){
 		sm.updateLogic();
+		fondo.updateLogic();
 	}
 
 	

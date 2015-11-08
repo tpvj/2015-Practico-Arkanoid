@@ -3,7 +3,7 @@ package scenes;
 class Game extends Scene {
 
 	public static var reinitCounter:Int=0;
-	private var paleta:Paleta;
+	public var paleta(default,null):Paleta;
 	private var bola:Bola;
 	private var bloques:Array<Bloque>;
 

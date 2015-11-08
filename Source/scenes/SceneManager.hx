@@ -1,12 +1,15 @@
 package scenes;
 
+import openfl.display.Sprite;
 
 class SceneManager {
 
 	private var scenes : Map <String, Scene> = null;
 	private var currentScene : Scene = null;	
+	private var main:Sprite;
 
-	public function new(){
+	public function new(main:Sprite){
+		this.main = main;
 		scenes = new Map<String,Scene>();
 	}
 
@@ -22,11 +25,11 @@ class SceneManager {
 		}
 
 		if(currentScene!=null){
-			openfl.Lib.current.stage.removeChild(currentScene);
+			main.removeChild(currentScene);
 		}
 
 		var scene = scenes.get(name);
-		openfl.Lib.current.stage.addChild(scene);
+		main.addChild(scene);
 		currentScene = scene;
 		currentScene.initialize();
 	}

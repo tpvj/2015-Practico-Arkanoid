@@ -17,7 +17,10 @@ class Menu extends Scene {
 
 		this.addChild(jugarBtn);
 		this.addChild(ayudaBtn);
+
+		#if (!ios)		
 		this.addChild(salirBtn);
+		#end 
 
 		jugarBtn.x=100;
 		jugarBtn.y=100;
@@ -36,13 +39,13 @@ class Menu extends Scene {
 		jugarBtn.alpha=0;
 		salirBtn.alpha=0;
 		ayudaBtn.alpha=0;
-		motion.Actuate.tween(jugarBtn,1.2,{x:300,alpha:1}).onComplete(function(){
-			motion.Actuate.tween(jugarBtn,0.6,{scaleX:1.5,scaleY:1.5}).onComplete(function(){
-				motion.Actuate.tween(jugarBtn,0.6,{scaleX:1,scaleY:1});
+		Actuate.tween(jugarBtn,1.2,{x:300,alpha:1}).onComplete(function(){
+			Actuate.tween(jugarBtn,0.6,{scaleX:1.5,scaleY:1.5}).onComplete(function(){
+				Actuate.tween(jugarBtn,0.6,{scaleX:1,scaleY:1});
 			});
 		});
-		motion.Actuate.tween(salirBtn,1.2,{x:300,alpha:1});		
-		motion.Actuate.tween(ayudaBtn,1.2,{x:300,alpha:1});		
+		Actuate.tween(salirBtn,1.2,{x:300,alpha:1});		
+		Actuate.tween(ayudaBtn,1.2,{x:300,alpha:1});		
 	}
 
 	function comenzar(){
