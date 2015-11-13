@@ -35,8 +35,8 @@ class Game extends Scene {
 		sm.switchScene('menu');
 	}
 
-	override public function updateLogic(){
-		super.updateLogic();
+	override public function updateLogic(time){
+		super.updateLogic(time);
 
 		if(reinitCounter>0){
 			reinitCounter--;
@@ -44,8 +44,8 @@ class Game extends Scene {
 			return;
 		}
 
-		bola.updateLogic();
-		paleta.updateLogic();
+		bola.updateLogic(time);
+		paleta.updateLogic(time);
 
 		for(b in bloques){
 			if(!b.roto) bola.verificarColision(b);

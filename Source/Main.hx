@@ -15,6 +15,7 @@ class Main extends Sprite {
 
 	private var sm:SceneManager;
 	private var fondo:Background;
+	private var lastTime:Float;
 
 	public function new () {
 		
@@ -37,7 +38,7 @@ class Main extends Sprite {
 		SoundManager.loadSound('game-over');
 
 		sm.switchScene('menu');
-
+		lastTime = Sys.time();
 	}
 
 	function resize(_){
@@ -52,8 +53,12 @@ class Main extends Sprite {
 
 
 	function updateLogic(_){
-		sm.updateLogic();
-		fondo.updateLogic();
+		var time = Sys.time();
+		var speed:Float = 0.7;
+		var deltaTime = (time-lastTime)*speed;
+		sm.updateLogic(deltaTime);
+		fondo.updateLogic(deltaTime);
+		lastTime = time;
 	}
 
 	

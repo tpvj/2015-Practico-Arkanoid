@@ -34,8 +34,8 @@ class SceneManager {
 		currentScene.initialize();
 	}
 
-	public function updateLogic(){
-		if(currentScene!=null) currentScene.updateLogic();
+	public function updateLogic(time:Float){
+		if(currentScene!=null) currentScene.updateLogic(time);
 	}
 
 }

@@ -31,7 +31,7 @@ class Bola extends GameElement {
 		}
 	}
 
-	override public function updateLogic(){
+	override public function updateLogic(time:Float){
 
 		if(this.x>=Main.SCENE_WIDTH-15){
 			vX*=-1; //= -2.4;
@@ -60,8 +60,8 @@ class Bola extends GameElement {
 			SoundManager.play('hit');
 		}
 
-		this.x+=vX;
-		this.y+=vY;
+		this.x+=vX*time*60;
+		this.y+=vY*time*60;
 
 		if(this.x>Main.SCENE_WIDTH-15) this.x=Main.SCENE_WIDTH-15;
 		if(this.y>Main.SCENE_HEIGHT-15) this.y=Main.SCENE_HEIGHT-15;

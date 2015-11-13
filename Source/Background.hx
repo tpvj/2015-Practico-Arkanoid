@@ -36,7 +36,7 @@ class Background extends GameElement {
 		this.addChild(bg3);
 	}
 
-	override public function updateLogic(){
+	override public function updateLogic(time:Float){
 		bg2.x=paleta.x/30;
 		bg3.x=paleta.x/10;
 	}

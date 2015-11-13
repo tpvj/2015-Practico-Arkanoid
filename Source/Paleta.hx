@@ -27,18 +27,18 @@ class Paleta extends GameElement {
 		//powerUp.rotation+=10;
 	}
 
-	override public function updateLogic(){
+	override public function updateLogic(time:Float){
 		propulsorL.visible = false;
 		propulsorR.visible = false;
 
 		if(InputManager.derecha) {
-			x += 3;
-			propulsorL.updateLogic();
+			x += 3*time*60;
+			propulsorL.updateLogic(time);
 			propulsorL.visible = true;
 		}
 		if(InputManager.izquierda) {
-			x -= 3;
-			propulsorR.updateLogic();
+			x -= 3*time*60;
+			propulsorR.updateLogic(time);
 			propulsorR.visible = true;
 		}
 	}

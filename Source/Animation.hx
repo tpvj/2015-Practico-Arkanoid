@@ -44,9 +44,9 @@ class Animation extends GameElement {
 		return Math.round(totalTime*30)%cant;			
 	}
 	
-	override public function updateLogic(/*time:Float*/){
+	override public function updateLogic(time:Float){
 		graphics.clear();
-		totalTime+=1/60;
+		totalTime+=time;
 		t.drawTiles(graphics,[0,0,getFrame()]);
 	}
 

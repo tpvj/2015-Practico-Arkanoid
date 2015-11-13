@@ -33,7 +33,7 @@ class GameElement extends Sprite {
 		return true;
 	}
 
-	public function updateLogic(){
+	public function updateLogic(time:Float){
 
 	}
 
