@@ -20,11 +20,11 @@ class Bola extends GameElement {
 			var dX=b.width/2+this.width/2-3;
 			b.kill();
 			if(this.y<b.y && b.y-this.y<dX){
-				vY=-Math.abs(vY);
+				vY=-Math.abs(vY)*0.9;
 				return;
 			} 
 			if(this.y>b.y && this.y-b.y<dX){
-				vY=-Math.abs(vY);
+				vY=-Math.abs(vY)*0.9;
 				return;
 			} 
 			vX*=-1;
@@ -49,19 +49,20 @@ class Bola extends GameElement {
 			scenes.Game.reinitCounter = 120;
 		}
 
-		if(this.y<=0+15){
+		if(this.y<=0+15 && vY<0){
 			vY*=-1; // = 2;
 			SoundManager.play('hit');
 		}
 
 		if(this.checkCollision(paleta)){
 			//vY*=-1;
-			vY=-1*Math.abs(vY);
+			vY=-8;
 			SoundManager.play('hit');
 		}
 
 		this.x+=vX*time*60;
 		this.y+=vY*time*60;
+		vY+=time*10;
 
 		if(this.x>Main.SCENE_WIDTH-15) this.x=Main.SCENE_WIDTH-15;
 		if(this.y>Main.SCENE_HEIGHT-15) this.y=Main.SCENE_HEIGHT-15;
